@@ -35,6 +35,7 @@ ncf-recommender/
 - 🧪 **PyTorch** – model training
 - 🔍 **Polars / Pandas** – data handling
 - 📊 **Matplotlib / Seaborn** – visualizations
+- 🤖 **Optuna** – hyperparameter tuning
 - 📁 **FastAPI** – for potential API serving
 - ☁️ **Google Cloud / GCS (optional)** – cloud deployment or storage
 
