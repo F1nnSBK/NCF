@@ -14,6 +14,7 @@ This project leverages **deep learning** and **collaborative filtering** techniq
 
 ## 📦 Project Structure
 
+```Bash
 ncf-recommender/
 ├── ncf.ipynb
 ├── data/
@@ -24,6 +25,7 @@ ncf-recommender/
 │ └── Helper.py
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
