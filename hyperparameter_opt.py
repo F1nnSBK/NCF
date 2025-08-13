@@ -12,7 +12,7 @@ from utils.interactions_dataset import InteractionsDataset
 # --- 1. Datenvorbereitung (Einmalig) ---
 data = pl.read_csv("data/ncf_data_v1.csv")
 data = data.drop_nulls()
-data = data.sample(n=1_000_000, seed=42)
+data = data.sample(n=500_000, seed=42)
 print(data["user_pseudo_id"].n_unique(), "unique users")
 print(data["article_id"].n_unique(), "unique items")
 print(data.shape, "rows in the dataset")
@@ -67,10 +67,10 @@ user_history = dict(zip(user_history_df["user_id_map"], user_history_df["item_id
 # --- 2. Objective-Funktion für Optuna ---
 def objective(trial):
     # Hyperparameter vorschlagen
-    embedding_dim = trial.suggest_int('embedding_dim', 16, 128, step=16)
+    embedding_dim = trial.suggest_int('embedding_dim', 64, 256, step=16)
     learning_rate = trial.suggest_float('learning_rate', 1e-4, 1e-2, log=True)
     batch_size = trial.suggest_categorical('batch_size', [1024, 2048, 4096])
-    num_epochs = trial.suggest_int('epochs', 10, 30)
+    num_epochs = trial.suggest_int('epochs', 10, 20)
 
     # DataLoader mit vorgeschlagener Batch-Size neu erstellen
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
@@ -142,7 +142,7 @@ if __name__ == "__main__":
     study = optuna.create_study(
         direction='maximize', 
         storage='sqlite:///hyper.db',
-        study_name='ncf_hpo_january_small'
+        study_name='ncf_hpo_january_medium'
     )
     study.optimize(objective, n_trials=50)
 

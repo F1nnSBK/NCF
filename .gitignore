@@ -6,3 +6,7 @@ __pycache__/
 ncf_training/
 .DS_Store
 models/
+data_gen.py
+*.json
+task_v2.py
+*.db
